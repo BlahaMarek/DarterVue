@@ -26,16 +26,17 @@
 
       </form>
 
-      <div class="bottom">
-        <ion-button @click="startGame()" expand="full" color="danger" >Start</ion-button>
-      </div>
+
 
     </ion-content>
+    <ion-footer>
+      <ion-button @click="startGame()" expand="full" color="danger" >Start</ion-button>
+    </ion-footer>
   </ion-page>
 </template>
 
 <script lang="ts">
-  import { IonButton, IonContent, IonIcon, IonImg, IonInput, IonPage, toastController } from '@ionic/vue';
+  import { IonButton, IonFooter, IonContent, IonIcon, IonImg, IonInput, IonPage, toastController } from '@ionic/vue';
   import { add, trash } from 'ionicons/icons';
   import { defineComponent } from 'vue';
   import { getPersons, getScore, setScore, setPersons } from "../data/Game";
@@ -97,7 +98,8 @@
       IonInput,
       IonIcon,
       IonButton,
-      IonImg
+      IonImg,
+      IonFooter
     },
   });
 </script>
@@ -147,13 +149,6 @@
     font-size: 20px;
     z-index: 10;
     color: #3c3c3c;
-  }
-
-  .bottom {
-    position: fixed;
-    width: 100%;
-    bottom: 2px;
-    left: 0;
   }
 
   #wrapper {

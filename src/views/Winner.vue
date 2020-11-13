@@ -7,17 +7,18 @@
         <h1>Winner: <b>{{name}}</b></h1>
       </div>
 
-      <div class="bottom">
-        <ion-button  expand="full" color="danger" @click="again()">Again</ion-button>
-        <ion-button  expand="full" color="danger" @click="newGame()">New game</ion-button>
-      </div>
-
     </ion-content>
+
+    <ion-footer>
+      <ion-button  expand="full" color="danger" @click="again()">Again</ion-button>
+      <ion-button  expand="full" color="danger" @click="newGame()">New game</ion-button>
+    </ion-footer>
+
   </ion-page>
 </template>
 
 <script>
-  import { IonContent, IonButton, IonImg, IonPage } from '@ionic/vue';
+  import { IonContent, IonFooter, IonButton, IonImg, IonPage } from '@ionic/vue';
   import { defineComponent } from 'vue';
   import {  getScore, setScore } from "../data/Game";
 
@@ -50,19 +51,12 @@
       }
 
     },
-    components: { IonContent, IonButton, IonImg, IonPage }
+    components: { IonContent, IonFooter, IonButton, IonImg, IonPage }
   });
 
 </script>
 
 <style scoped>
-  .bottom {
-    position: fixed;
-    width: 100%;
-    bottom: 2px;
-    left: 0;
-  }
-
   img {
     width: 80%;
     margin: 10px auto;

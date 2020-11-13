@@ -21,14 +21,15 @@
         </div>
       </section>
 
-      <button class="next" @click="nextPlayer()">Next player</button>
-
     </ion-content>
+    <ion-footer>
+      <button class="next" @click="nextPlayer()">Next player</button>
+    </ion-footer>
   </ion-page>
 </template>
 
 <script lang="ts">
-  import {IonButton, IonContent, IonIcon, IonPage, toastController} from '@ionic/vue';
+  import {IonButton, IonFooter, IonContent, IonIcon, IonPage, toastController} from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { getPersons } from "@/data/Game";
 
@@ -77,7 +78,7 @@ export default defineComponent({
       return toast.present();
     }
   },
-  components: {IonContent, IonIcon, IonButton, IonPage },
+  components: {IonContent, IonFooter, IonIcon, IonButton, IonPage },
 });
 </script>
 
@@ -87,8 +88,6 @@ export default defineComponent({
   }
 
   .next {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     padding: 15px;
     margin: 0 auto;
