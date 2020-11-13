@@ -30,7 +30,7 @@
 <script lang="ts">
   import {IonButton, IonContent, IonIcon, IonPage, toastController} from '@ionic/vue';
 import { defineComponent } from 'vue';
-import {getPersons} from "@/data/Game";
+import { getPersons } from "@/data/Game";
 
 export default defineComponent({
   name: 'Game',
@@ -46,6 +46,7 @@ export default defineComponent({
       this.persons = getPersons();
       this.index = 0;
     },
+
     refreshScore: function (num: number) {
 
       if (this.persons[this.index].score - num < 0) {
@@ -62,7 +63,6 @@ export default defineComponent({
     },
 
     closeApp: function () {
-      console.log('close');
       this.$router.push('/home')
     },
 

@@ -70,7 +70,6 @@
       },
 
       startGame: function () {
-
         if (this.persons.length == 0 || this.persons.find(person => person.name == "" || person.name == null) || this.score <= 0) {
           this.openToast();
           return;
