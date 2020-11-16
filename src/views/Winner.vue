@@ -25,10 +25,7 @@
   export default defineComponent({
     name: 'Winner',
     created () {
-      this.fetchData()
-    },
-    watch: {
-      '$route': 'fetchData'
+      this.fetchData();
     },
     data() {
       return {
