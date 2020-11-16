@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-  import { IonButton, IonFooter, IonContent, IonIcon, IonImg, IonInput, IonPage, toastController } from '@ionic/vue';
+  import { IonIcon, IonImg, IonInput, toastController } from '@ionic/vue';
   import { add, trash } from 'ionicons/icons';
   import { defineComponent } from 'vue';
   import { getPersons, getScore, setScore, setPersons } from "../data/Game";
@@ -93,13 +93,9 @@
       },
     },
     components: {
-      IonContent,
-      IonPage,
       IonInput,
       IonIcon,
-      IonButton,
       IonImg,
-      IonFooter
     },
   });
 </script>

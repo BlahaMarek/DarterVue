@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { IonContent, IonFooter, IonButton, IonImg, IonPage } from '@ionic/vue';
+  import { IonImg } from '@ionic/vue';
   import { defineComponent } from 'vue';
   import {  getScore, setScore } from "../data/Game";
 
@@ -51,7 +51,7 @@
       }
 
     },
-    components: { IonContent, IonFooter, IonButton, IonImg, IonPage }
+    components: { IonImg }
   });
 
 </script>

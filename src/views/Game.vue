@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-  import {IonButton, IonFooter, IonContent, IonIcon, IonPage, toastController} from '@ionic/vue';
+  import { IonIcon, toastController} from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { getPersons } from "@/data/Game";
 
@@ -78,7 +78,7 @@ export default defineComponent({
       return toast.present();
     }
   },
-  components: {IonContent, IonFooter, IonIcon, IonButton, IonPage },
+  components: { IonIcon },
 });
 </script>
 
