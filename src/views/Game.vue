@@ -9,15 +9,15 @@
 
       <section class="points">
         <div class="row">
-          <ion-button color="primary" @click="refreshScore(1)">1</ion-button>
-          <ion-button color="primary" @click="refreshScore(2)" >2</ion-button>
+          <ion-button color="primary" @click="subtractScore(1)">1</ion-button>
+          <ion-button color="primary" @click="subtractScore(2)" >2</ion-button>
         </div>
         <div class="row">
-          <ion-button color="primary" @click="refreshScore(5)" >5</ion-button>
-          <ion-button color="primary" @click="refreshScore(10)" >10</ion-button>
+          <ion-button color="primary" @click="subtractScore(5)" >5</ion-button>
+          <ion-button color="primary" @click="subtractScore(10)" >10</ion-button>
         </div>
         <div class="row">
-          <ion-button class="pro" color="primary" @click="refreshScore(20)" >20</ion-button>
+          <ion-button class="pro" color="primary" @click="subtractScore(20)" >20</ion-button>
         </div>
       </section>
 
@@ -48,7 +48,7 @@ export default defineComponent({
       this.index = 0;
     },
 
-    refreshScore: function (num: number) {
+    subtractScore: function (num: number) {
 
       if (this.persons[this.index].score - num < 0) {
         this.openToast();
