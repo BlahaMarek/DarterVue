@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import { store } from './store/store'
 
 import {IonicVue, IonPage, IonContent, IonFooter, IonButton} from '@ionic/vue';
 
@@ -31,6 +32,8 @@ app.component('ion-page', IonPage);
 app.component('ion-content', IonContent);
 app.component('ion-footer', IonFooter);
 app.component('ion-button', IonButton);
+
+app.use(store);
 
 router.isReady().then(() => {
   app.mount('#app');

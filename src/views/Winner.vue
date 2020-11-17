@@ -20,7 +20,7 @@
 <script>
   import { IonImg } from '@ionic/vue';
   import { defineComponent } from 'vue';
-  import {  getScore, setScore } from "../data/Game";
+  import { store } from "@/store/store";
 
   export default defineComponent({
     name: 'Winner',
@@ -39,7 +39,7 @@
       },
 
       again: function () {
-        setScore(getScore());
+        store.dispatch('setPlayersScore');
         this.$router.push('/game');
       },
 

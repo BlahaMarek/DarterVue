@@ -26,8 +26,6 @@
 
       </form>
 
-
-
     </ion-content>
     <ion-footer>
       <ion-button @click="startGame()" expand="full" color="danger" >Start</ion-button>
@@ -39,15 +37,16 @@
   import { IonIcon, IonImg, IonInput, toastController } from '@ionic/vue';
   import { add, trash } from 'ionicons/icons';
   import { defineComponent } from 'vue';
-  import { getPersons, getScore, setScore, setPersons } from "../data/Game";
+  import { store } from "@/store/store";
+  import { Person } from "@/model/Person";
 
   export default defineComponent({
     name: 'Home',
     data() {
       return {
-        score: getScore(),
+        score: store.getters.getGlobalScore,
         isDisabled: true,
-        persons: getPersons()
+        persons: store.getters.getPersons
       }
     },
     setup() {
@@ -56,7 +55,6 @@
       }
     },
     methods: {
-
       addPlayer: function () {
         const container = this.$el.querySelector("#wrapper");
         container.scrollTop = container.scrollHeight;
@@ -64,20 +62,22 @@
       },
 
       deletePlayer: function (id: number) {
-        this.persons = this.persons.filter(person => person.id != id);
-        this.persons.forEach((person, index) => {
+        this.persons = this.persons.filter( (person: Person) => person.id != id);
+        this.persons.forEach((person: Person, index: number) => {
           person.id = index;
         });
       },
 
       startGame: function () {
-        if (this.persons.length == 0 || this.persons.find(person => person.name == "" || person.name == null) || this.score <= 0) {
+        if (this.persons.length == 0 || this.persons.find((person: Person) => person.name == "" || person.name == null) || this.score <= 0) {
           this.openToast();
           return;
         }
 
-        setPersons(this.persons);
-        setScore(this.score);
+        store.dispatch('setPersons', this.persons);
+        store.dispatch('setGlobalScore', this.score);
+        store.dispatch('setPlayersScore');
+
         this.$router.push('/game');
       },
 

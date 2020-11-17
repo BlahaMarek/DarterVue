@@ -29,22 +29,22 @@
 </template>
 
 <script lang="ts">
-  import { IonIcon, toastController} from '@ionic/vue';
+import { IonIcon, toastController} from '@ionic/vue';
 import { defineComponent } from 'vue';
-import { getPersons } from "@/data/Game";
+import { store } from "@/store/store";
 
 export default defineComponent({
   name: 'Game',
   data() {
     return {
-      persons: getPersons(),
+      persons: store.getters.getPersons,
       index: 0
     }
   },
 
   methods: {
     ionViewDidEnter(): void {
-      this.persons = getPersons();
+      this.persons = store.getters.getPersons;
       this.index = 0;
     },
 
