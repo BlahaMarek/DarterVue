@@ -1,20 +1,15 @@
 <template>
   <ion-page>
     <ion-content :fullscreen="true">
-
       <ion-img class="logo" :src="'../assets/logoMain.png'"></ion-img>
-
       <form>
-
         <div class="row">
           <p>Score</p>
           <ion-input type="number" v-model="score"></ion-input>
         </div>
-
         <div class="tac">
           <ion-icon color="danger" :icon="add" @click="addPlayer()" ></ion-icon>
         </div>
-
         <div>
           <div id="wrapper">
             <div class="row"  v-for="person in persons" :key="person.id" >
@@ -23,9 +18,7 @@
             </div>
           </div>
         </div>
-
       </form>
-
     </ion-content>
     <ion-footer>
       <ion-button @click="startGame()" expand="full" color="danger" >Start</ion-button>
@@ -39,66 +32,42 @@
   import { defineComponent } from 'vue';
   import { store } from "@/store/store";
   import { Person } from "@/model/Person";
+  import {mapActions, mapGetters} from 'vuex';
 
   export default defineComponent({
     name: 'Home',
-    data() {
-      return {
-        score: store.getters.getGlobalScore,
-        isDisabled: true,
-        persons: store.getters.getPersons
-      }
-    },
     setup() {
       return {
         add, trash
       }
     },
+    computed: {
+      ...mapGetters({ persons: 'getPersons' }),
+      score: {
+        get () { return store.state.score },
+        set (value) { this.changeGlobalScore(value) }
+      }
+    },
     methods: {
-      addPlayer: function () {
-        const container = this.$el.querySelector("#wrapper");
-        container.scrollTop = container.scrollHeight;
-        this.persons.push({id: this.persons.length+1, name: "", score: 301});
-      },
-
-      deletePlayer: function (id: number) {
-        this.persons = this.persons.filter( (person: Person) => person.id != id);
-        this.persons.forEach((person: Person, index: number) => {
-          person.id = index;
-        });
-      },
+      ...mapActions(['addPlayer', 'deletePlayer', 'changeGlobalScore', 'changePlayerDefaultScore']),
 
       startGame: function () {
         if (this.persons.length == 0 || this.persons.find((person: Person) => person.name == "" || person.name == null) || this.score <= 0) {
-          this.openToast();
-          return;
+          return this.openToast();
         }
-
-        store.dispatch('setPersons', this.persons);
-        store.dispatch('setGlobalScore', this.score);
-        store.dispatch('setPlayersScore');
-
+        this.changePlayerDefaultScore();
         this.$router.push('/game');
       },
 
       async openToast() {
-        const toast = await toastController
-                .create({
-                  message: 'Fill all data',
-                  duration: 2000,
-                  position: 'top',
-                  color: 'danger',
-                });
+        const toast = await toastController.create({ message: 'Fill all data', duration: 2000, position: 'top', color: 'danger' });
         return toast.present();
       },
     },
-    components: {
-      IonInput,
-      IonIcon,
-      IonImg,
-    },
+    components: { IonInput, IonIcon, IonImg },
   });
 </script>
+
 <style scoped>
   .logo {
     width: 70%;

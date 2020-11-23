@@ -1,26 +1,22 @@
 <template>
   <ion-page>
     <ion-content>
-
       <div class="tac">
         <ion-img class="logo" :src="'../assets/winner.png'"></ion-img>
         <h1>Winner: <b>{{name}}</b></h1>
       </div>
-
     </ion-content>
-
     <ion-footer>
       <ion-button  expand="full" color="danger" @click="again()">Again</ion-button>
       <ion-button  expand="full" color="danger" @click="newGame()">New game</ion-button>
     </ion-footer>
-
   </ion-page>
 </template>
 
 <script>
   import { IonImg } from '@ionic/vue';
   import { defineComponent } from 'vue';
-  import { store } from "@/store/store";
+  import { mapActions } from "vuex";
 
   export default defineComponent({
     name: 'Winner',
@@ -33,13 +29,14 @@
       }
     },
     methods: {
+      ...mapActions(['changePlayerDefaultScore']),
 
       fetchData: function() {
         this.name = this.$route.params.winner;
       },
 
       again: function () {
-        store.dispatch('setPlayersScore');
+        this.changePlayerDefaultScore();
         this.$router.push('/game');
       },
 
